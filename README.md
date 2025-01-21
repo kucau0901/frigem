@@ -105,9 +105,6 @@ logger:
     custom_components.frigate_gemini: debug
 ```
 
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
@@ -115,8 +112,8 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Support
 
-- Report issues on [GitHub](https://github.com/kucau0901/frigate_gemini/issues)
-- Join discussions in the [Home Assistant Community](https://community.home-assistant.io/)
+- Report issues on [GitHub](https://github.com/kucau0901/frigem/issues)
+
 
 ## Sensors
 
