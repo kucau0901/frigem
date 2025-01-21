@@ -259,7 +259,23 @@ class MQTTHandler:
                         ATTR_DETECTION_TIME: event_time.isoformat(),
                     },
                 )
+
+                # Fire event for automations
+                self.hass.bus.async_fire(
+                    "frigate_gemini_analysis_complete",
+                    {
+                        "camera": camera,
+                        "event_id": event_id,
+                        "label": label,
+                        "confidence": f"{confidence:.1%}",
+                        "confidence_raw": confidence,
+                        "analysis": analysis,
+                        "detection_time": event_time.isoformat(),
+                    },
+                )
+                
                 _LOGGER.debug("[frigate_gemini] Updated sensor state for camera %s: %s", camera, f"{label} detected at {formatted_time} ({confidence:.1%} confidence)")
+                _LOGGER.debug("[frigate_gemini] Fired analysis complete event for camera %s", camera)
                 
             except Exception as err:
                 _LOGGER.error(
@@ -280,3 +296,4 @@ class MQTTHandler:
             _LOGGER.error("[frigate_gemini] Error decoding MQTT message: %s", str(err))
         except Exception as err:
             _LOGGER.error("[frigate_gemini] Error handling MQTT message: %s", str(err))
+
