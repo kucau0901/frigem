@@ -1,0 +1,56 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "FriGem Setup",
+                "description": "Set up FriGem integration with your Google API key",
+                "data": {
+                    "api_key": "Google Gemini API Key",
+                    "frigate_url": "Frigate URL (e.g., http://frigate:5000)",
+                    "mqtt_topic": "MQTT Topic (default: frigate/events)"
+                }
+            },
+            "cameras": {
+                "title": "Select Cameras",
+                "description": "Choose which cameras to analyze with Gemini",
+                "data": {
+                    "cameras": "Cameras"
+                }
+            }
+        },
+        "error": {
+            "cannot_connect": "[%key:common::config_flow::error::cannot_connect%]",
+            "invalid_auth": "[%key:common::config_flow::error::invalid_auth%]",
+            "no_cameras": "Please select at least one camera",
+            "unknown": "[%key:common::config_flow::error::unknown%]"
+        },
+        "abort": {
+            "already_configured": "[%key:common::config_flow::abort::already_configured_device%]"
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "title": "FriGem Options",
+                "description": "Update camera selection",
+                "data": {
+                    "cameras": "Cameras"
+                }
+            }
+        }
+    },
+    "entity": {
+        "sensor": {
+            "frigate_gemini": {
+                "name": "FriGem {camera}",
+                "state_attributes": {
+                    "camera": "Camera",
+                    "last_updated": "Last Updated",
+                    "event_id": "Event ID",
+                    "label": "Detected Object",
+                    "full_analysis": "Full Analysis"
+                }
+            }
+        }
+    }
+}
