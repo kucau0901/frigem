@@ -20,7 +20,7 @@ A Home Assistant custom component that enhances your Frigate NVR experience with
    - Click on Integrations
    - Click the three dots in the top right corner
    - Select "Custom repositories"
-   - Add `https://github.com/yourusername/frigate-gemini` as a custom repository
+   - Add `https://github.com/kucau0901/frigem` as a custom repository
    - Select "Integration" as the category
 3. Click Install
 4. Restart Home Assistant
