@@ -1,4 +1,4 @@
-#FriGem -  Frigate Gemini Integration
+# Frigate Gemini Integration - FriGem
 
 A Home Assistant custom component that enhances your Frigate NVR experience with Google's Gemini 2.0 AI model. This integration analyzes video clips from Frigate events and provides natural language descriptions of what's happening in the scene.
 
@@ -105,6 +105,7 @@ logger:
     custom_components.frigate_gemini: debug
 ```
 
+Then restart Home Assistant.
 
 ## License
 
@@ -113,7 +114,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## Support
 
 - Report issues on [GitHub](https://github.com/kucau0901/frigem/issues)
-
+- Join discussions in the [Home Assistant Community](https://community.home-assistant.io/)
 
 ## Sensors
 
@@ -270,6 +271,112 @@ These logs are particularly useful for:
 
 For real-time response to detections, always use the event trigger. The integration fires the `frigate_gemini_analysis_complete` event that you should use in your automations.
 
+### Text-to-Speech Announcements
+
+The integration fires a `frigate_gemini_analysis_complete` event that you can use with TTS services to announce detections. Here are some examples:
+
+#### Basic Announcement
+```yaml
+automation:
+  alias: "Announce Gemini Analysis"
+  trigger:
+    platform: event
+    event_type: frigate_gemini_analysis_complete
+  action:
+    - service: tts.cloud_say  # Replace with your TTS service (e.g., tts.google_translate_say)
+      data:
+        entity_id: media_player.living_room_speaker  # Replace with your media player
+        message: "{{ trigger.event.data.analysis }}"
+```
+
+#### Smart Announcement with Confidence Check
+```yaml
+automation:
+  alias: "Smart Detection Announcement"
+  trigger:
+    platform: event
+    event_type: frigate_gemini_analysis_complete
+  condition:
+    - condition: template
+      value_template: "{{ trigger.event.data.confidence_raw > 0.8 }}"  # 80% confidence threshold
+    - condition: time
+      after: "08:00:00"
+      before: "22:00:00"
+  action:
+    - service: tts.cloud_say
+      data:
+        entity_id: media_player.living_room_speaker
+        message: >-
+          {{ trigger.event.data.camera | replace("_", " ") }} camera: 
+          {{ trigger.event.data.analysis }}
+```
+
+#### Person-Only Announcements
+```yaml
+automation:
+  alias: "Announce Person Detection"
+  trigger:
+    platform: event
+    event_type: frigate_gemini_analysis_complete
+    event_data:
+      label: person
+  action:
+    - service: tts.cloud_say
+      data:
+        entity_id: media_player.living_room_speaker
+        message: >-
+          Person detected at {{ trigger.event.data.camera | replace("_", " ") }} camera. 
+          {{ trigger.event.data.analysis }}
+```
+
+#### Custom Message Format
+```yaml
+automation:
+  alias: "Detailed Detection Announcement"
+  trigger:
+    platform: event
+    event_type: frigate_gemini_analysis_complete
+  variables:
+    confidence_pct: "{{ (trigger.event.data.confidence_raw * 100) | round(1) }}"
+  condition:
+    - condition: template
+      value_template: "{{ trigger.event.data.confidence_raw > 0.6 }}"
+  action:
+    - service: tts.cloud_say
+      data:
+        entity_id: media_player.living_room_speaker
+        message: >-
+          {% set camera = trigger.event.data.camera | replace("_", " ") %}
+          {% if confidence_pct > 90 %}
+            High confidence detection at {{ camera }} camera: 
+          {% else %}
+            Possible detection at {{ camera }} camera: 
+          {% endif %}
+          {{ trigger.event.data.analysis }}
+```
+
+### Available Event Data
+
+The `frigate_gemini_analysis_complete` event provides these fields:
+- `camera`: Camera name
+- `event_id`: Frigate event ID
+- `label`: Detected object type (e.g., person, car)
+- `confidence`: Confidence as percentage string (e.g., "82.4%")
+- `confidence_raw`: Raw confidence value (0.0 to 1.0)
+- `analysis`: The full Gemini analysis text
+- `detection_time`: Event detection time in ISO format
+
+You can use any of these fields in your automation's message template.
+
+### TTS Service Options
+
+Common TTS services you can use:
+- `tts.google_translate_say`: Free Google Translate TTS
+- `tts.cloud_say`: Cloud TTS providers
+- `tts.amazon_polly_say`: Amazon Polly TTS
+
+Replace `tts.cloud_say` in the examples with your preferred TTS service.
+
 ### Event Details
 
 The event contains all necessary data for automations:
@@ -375,3 +482,4 @@ These automations demonstrate:
 - Integration with other Home Assistant services
 - Proper timing and state tracking
 - Advanced notification options
+
