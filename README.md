@@ -1,4 +1,4 @@
-# Frigate Gemini Integration
+#FriGem -  Frigate Gemini Integration
 
 A Home Assistant custom component that enhances your Frigate NVR experience with Google's Gemini 2.0 AI model. This integration analyzes video clips from Frigate events and provides natural language descriptions of what's happening in the scene.
 
