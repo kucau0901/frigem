@@ -3,7 +3,7 @@
   "name": "FriGem",
   "documentation": "https://github.com/kucau0901/FriGem",
   "issue_tracker": "https://github.com/kucau0901/FriGem/issues",
-  "dependencies": ["mqtt"],
+  "dependencies": ["mqtt", "frigate>=0.9.1"],
   "codeowners": ["@kucau0901"],
   "requirements": ["google-genai", "aiofiles"],
   "config_flow": true,
