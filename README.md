@@ -34,7 +34,7 @@ A Home Assistant custom component that enhances your Frigate NVR experience with
 
 ### Prerequisites
 
-1. A working [Frigate NVR](https://frigate.video/) installation
+1. A working [Frigate NVR](https://frigate.video/) installation. Minimum version 0.9.1
 2. A Google API key with access to Gemini 2.0
 3. MQTT broker configured in Home Assistant
 
