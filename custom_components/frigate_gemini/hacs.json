@@ -1,8 +1,0 @@
-{
-    "name": "Frigem",
-    "render_readme": true,
-    "domain": "frigate_gemini",
-    "documentation": "https://github.com/kucau0901/frigem",
-    "issue_tracker": "https://github.com/kucau0901/frigem/issues",
-    "homeassistant": "2023.8.0"
-}
