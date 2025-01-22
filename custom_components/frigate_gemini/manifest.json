@@ -1,14 +1,14 @@
 {
   "domain": "frigate_gemini",
   "name": "FriGem",
-  "documentation": "https://github.com/kucau0901/FriGem",
-  "issue_tracker": "https://github.com/kucau0901/FriGem/issues",
-  "dependencies": ["mqtt", "frigate>=0.9.1"],
-  "codeowners": ["@kucau0901"],
-  "requirements": ["google-genai", "aiofiles"],
+  "codeowners": ["@kucau0901","@zubir2k"],
   "config_flow": true,
-  "version": "1.0.0",
-  "iot_class": "local_push",
+  "documentation": "https://github.com/kucau0901/FriGem",
+  "dependencies": ["mqtt", "frigate>=0.9.1"],
+  "homeassistant": "2023.8.0",
   "integration_type": "service",
-  "homeassistant": "2023.8.0"
+  "iot_class": "local_push",
+  "issue_tracker": "https://github.com/kucau0901/FriGem/issues",
+  "requirements": ["google-genai", "aiofiles"],
+  "version": "1.0.0"
 }
