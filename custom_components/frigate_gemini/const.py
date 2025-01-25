@@ -16,7 +16,7 @@ DEFAULT_PROMPT = "Provide a summary of the events in the video. Focus more on th
 # Attributes
 ATTR_CAMERA = "camera"
 ATTR_LABEL = "label"
-ATTR_FULL_ANALYSIS = "full_analysis"
+ATTR_ANALYSIS = "analysis"
 ATTR_PROMPT = "prompt"
 ATTR_EVENT_ID = "event_id"
 ATTR_CONFIDENCE = "confidence"
@@ -45,3 +45,4 @@ ERROR_INVALID_API_KEY = "Invalid API key. Please check your API key and try agai
 ERROR_API_QUOTA = "API quota exceeded. Please try again later."
 ERROR_FILE_UPLOAD = "Failed to upload video file"
 ERROR_FILE_PROCESSING = "Error processing video file"
+
