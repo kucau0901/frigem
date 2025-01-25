@@ -16,7 +16,7 @@ DEFAULT_PROMPT = "Provide a summary of the events in the video. Focus more on th
 # Attributes
 ATTR_CAMERA = "camera"
 ATTR_LABEL = "label"
-ATTR_ANALYSIS = "analysis"
+ATTR_FULL_ANALYSIS = "full_analysis"
 ATTR_PROMPT = "prompt"
 ATTR_EVENT_ID = "event_id"
 ATTR_CONFIDENCE = "confidence"
