@@ -25,7 +25,7 @@ from .const import (
     ATTR_LABEL,
     ATTR_CONFIDENCE,
     ATTR_CONFIDENCE_RAW,
-    ATTR_FULL_ANALYSIS,
+    ATTR_ANALYSIS,
     ATTR_LAST_UPDATED,
     ATTR_DETECTION_TIME,
 )
@@ -254,7 +254,7 @@ class MQTTHandler:
                         ATTR_LABEL: label,
                         ATTR_CONFIDENCE: f"{confidence:.1%}",
                         ATTR_CONFIDENCE_RAW: confidence,
-                        ATTR_FULL_ANALYSIS: analysis,
+                        ATTR_ANALYSIS: analysis,
                         ATTR_LAST_UPDATED: dt_util.now().isoformat(),
                         ATTR_DETECTION_TIME: event_time.isoformat(),
                     },
