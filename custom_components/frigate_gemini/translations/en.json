@@ -3,12 +3,11 @@
         "step": {
             "user": {
                 "title": "FriGem Setup",
-                "description": "Set up FriGem to analyze Frigate events with Gemini",
+                "description": "Set up FriGem integration",
                 "data": {
                     "api_key": "Gemini API Key",
                     "frigate_url": "Frigate URL",
-                    "mqtt_topic": "MQTT Topic",
-                    "cameras": "Cameras"
+                    "mqtt_topic": "MQTT Topic"
                 }
             },
             "cameras": {
@@ -28,13 +27,13 @@
         },
         "error": {
             "invalid_api_key": "Invalid Gemini API key",
-            "cannot_connect": "Failed to connect",
+            "cannot_connect": "Failed to connect to Frigate",
             "invalid_mqtt": "Invalid MQTT configuration",
-            "invalid_auth": "Invalid authentication",
+            "invalid_auth": "Invalid API key",
             "unknown": "Unexpected error"
         },
         "abort": {
-            "already_configured": "Device is already configured"
+            "already_configured": "This camera is already configured"
         }
     },
     "options": {
@@ -50,7 +49,7 @@
                 "title": "Update Analysis Prompt",
                 "description": "Customize how Gemini analyzes videos from camera '{camera}'. Use {label} in your prompt to reference the detected object (e.g., person, car, dog).\n\nExample prompts:\n• \"What is the {label} doing in the video? Describe their actions and behavior.\"\n• \"Focus on the {label}'s movement patterns and any interactions with the environment.\"\n• \"Analyze the {label}'s appearance, actions, and any notable events in the scene.\"",
                 "data": {
-                    "prompt": "Custom Prompt"
+                    "prompt": "Analysis Prompt"
                 }
             }
         }
@@ -68,26 +67,11 @@
             "frigate_gemini": {
                 "name": "FriGem {camera}",
                 "state_attributes": {
-                    "camera": {
-                        "name": "Camera",
-                        "description": "The camera that captured the event"
-                    },
-                    "last_updated": {
-                        "name": "Last Updated",
-                        "description": "When this analysis was last updated"
-                    },
-                    "event_id": {
-                        "name": "Event ID",
-                        "description": "The unique identifier for this event"
-                    },
-                    "label": {
-                        "name": "Detected Object",
-                        "description": "The type of object detected"
-                    },
-                    "full_analysis": {
-                        "name": "Full Analysis",
-                        "description": "Complete analysis from Gemini"
-                    }
+                    "camera": "Camera",
+                    "last_updated": "Last Updated",
+                    "event_id": "Event ID",
+                    "label": "Detected Object",
+                    "full_analysis": "Full Analysis"
                 }
             }
         },
@@ -95,12 +79,10 @@
             "frigem_analysis": {
                 "name": "FriGem Analysis {camera}",
                 "state_attributes": {
-                    "camera": {
-                        "name": "Camera",
-                        "description": "The camera this switch controls"
-                    }
+                    "camera": "Camera"
                 }
             }
         }
     }
 }
+
