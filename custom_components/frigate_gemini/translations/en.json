@@ -47,7 +47,7 @@
             },
             "prompt": {
                 "title": "Update Analysis Prompt",
-                "description": "Customize how Gemini analyzes videos from camera '{camera}'. Use {label} in your prompt to reference the detected object (e.g., person, car, dog).\n\nExample prompts:\n• \"What is the {label} doing in the video? Describe their actions and behavior.\"\n• \"Focus on the {label}'s movement patterns and any interactions with the environment.\"\n• \"Analyze the {label}'s appearance, actions, and any notable events in the scene.\"",
+                "description": "Customize how Gemini analyzes videos from camera {camera}. Use {label} in your prompt to reference the detected object (e.g., person, car, dog).\n\nExample prompts:\n• \"What is the {label} doing in the video? Describe their actions and behavior.\"\n• \"Focus on the {label}'s movement patterns and any interactions with the environment.\"\n• \"Analyze the {label}'s appearance, actions, and any notable events in the scene.\"",
                 "data": {
                     "prompt": "Analysis Prompt"
                 }
@@ -67,11 +67,30 @@
             "frigate_gemini": {
                 "name": "FriGem {camera}",
                 "state_attributes": {
-                    "camera": "Camera",
-                    "last_updated": "Last Updated",
-                    "event_id": "Event ID",
-                    "label": "Detected Object",
-                    "full_analysis": "Full Analysis"
+                    "camera": {
+                        "name": "Camera"
+                    },
+                    "event_id": {
+                        "name": "Event ID"
+                    },
+                    "label": {
+                        "name": "Detected Object"
+                    },
+                    "confidence": {
+                        "name": "Confidence"
+                    },
+                    "confidence_raw": {
+                        "name": "Confidence (Raw)"
+                    },
+                    "analysis": {
+                        "name": "Analysis"
+                    },
+                    "last_updated": {
+                        "name": "Last Updated"
+                    },
+                    "detection_time": {
+                        "name": "Detection Time"
+                    }
                 }
             }
         },
@@ -79,7 +98,9 @@
             "frigem_analysis": {
                 "name": "FriGem Analysis {camera}",
                 "state_attributes": {
-                    "camera": "Camera"
+                    "camera": {
+                        "name": "Camera"
+                    }
                 }
             }
         }
